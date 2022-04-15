@@ -31,7 +31,7 @@ namespace CRUD_In_MVC_New_Project.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel { Requestid = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

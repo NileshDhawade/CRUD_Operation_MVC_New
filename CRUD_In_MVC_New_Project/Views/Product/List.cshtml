@@ -1,0 +1,26 @@
+﻿
+<h3>Product List</h3>
+<p>
+    @Html.ActionLink("Add New", "Create", "Product")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>Action</th>
+    </tr>
+    @foreach(CRUD_In_MVC_New_Project.Models.Product prod in ViewBag.ProductList)
+    {
+        <tr>
+            <td>@prod.id</td>
+            <td>@prod.name</td>
+            <td>@prod.price</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { @id = prod.id }) |
+                @Html.ActionLink("Delete", "Delete", new { @id = prod.id })
+            </td>
+        </tr>
+    }
+</table>
+

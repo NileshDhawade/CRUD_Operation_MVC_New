@@ -35,5 +35,49 @@ namespace CRUD_In_MVC_New_Project.Controllers
             return View();
 
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Product prod = context.GetProductByid(id);
+            ViewBag.name = prod.name;
+            ViewBag.price = prod.price;
+            ViewBag.id = prod.id;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Edit(IFormCollection form)
+        {
+            Product prod = new Product();
+            prod.name = form["name"];
+            prod.price = Convert.ToDecimal(form["price"]);
+            prod.id = Convert.ToInt32(form["id"]);
+            int res = context.Upate(prod);
+            if (res == 1)
+                return RedirectToAction("List");
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Product prod = context.GetProductByid(id);
+            ViewBag.name = prod.name;
+            ViewBag.price = prod.price;
+            ViewBag.id = prod.id;
+            return View();
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeleteConfirm(int id)
+        {
+            int res = context.Delete(id);
+            if (res == 1)
+                return RedirectToAction("List");
+
+            return View();
+        }
+
+
     }
 }
